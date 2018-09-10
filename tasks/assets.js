@@ -1,44 +1,33 @@
 'use strict';
 
+const {config, gulp, browserSync, gp} = $;
 
-const 	gulp  			= require('gulp'),
-		plumber			= require('gulp-plumber'),
-		rename			= require("gulp-rename"),
-		fileinclude 	= require('gulp-file-include'),
-		njkRender 		= require('gulp-nunjucks-render'),
-		htmlbeautify 	= require('gulp-html-beautify'),
-		browserSync 	= require("browser-sync"),
-		reload			= browserSync.reload;
-
-
-module.exports = (options) => {
-	let config = options.config;
+module.exports = () => {
 	return () => { 
 		return gulp
 			.src([config.path.src.html]) 
-			.pipe(plumber())
-			.pipe(fileinclude({
+			.pipe(gp.plumber())
+			.pipe(gp.fileInclude({
 				prefix: '@@',
 				basepath: config.path.src.template
 			}))
-			// .pipe(njkRender({
-			// 	envOptions: {
-			// 		tags: {
-			// 			blockStart: '<%',
-			// 			blockEnd: '%>',
-			// 			variableStart: '<$',
-			// 			variableEnd: '$>',
-			// 			commentStart: '<#',
-			// 			commentEnd: '#>'
-			// 		}
-			// 	}
-			// }))
-			.pipe(htmlbeautify({
+			.pipe(gp.nunjucksRender ({
+				envOptions: {
+					tags: {
+						blockStart: '<%',
+						blockEnd: '%>',
+						variableStart: '<$',
+						variableEnd: '$>',
+						commentStart: '<#',
+						commentEnd: '#>'
+					}
+				}
+			}))
+			.pipe(gp.htmlBeautify({
 				"indent_size": 1,
 				"indent_char": "	",
 			}))
-			// .pipe(rename({ extname: '.php' }))
 			.pipe(gulp.dest(config.path.dist.html))
-			.pipe(reload({stream: true}));
+			.on('end', browserSync.reload);
 	};
 };

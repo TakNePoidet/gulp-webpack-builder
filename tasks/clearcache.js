@@ -1,10 +1,9 @@
 'use strict';
 
+const 	{gp} = $;
 
-const 	cache		= require('gulp-cache');
-
-module.exports = (options) => {
+module.exports = () => {
 	return () => { 
-		return cache.clearAll();
+		return gp.cache.clearAll();
 	};
 };

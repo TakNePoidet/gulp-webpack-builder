@@ -1,16 +1,13 @@
 'use strict';
 
+const {gulp,config} = $;
 
-const 	gulp		= require('gulp'),
-		watch		= require('gulp-watch');
-
-module.exports = (options) => {
-	let config = options.config;
+module.exports = () => {
 	return () => { 
-		gulp.watch([config.path.watch.html, config.path.watch.php], gulp.series('html:build'));
-		gulp.watch([config.path.watch.style], gulp.series('style:build'));
-		gulp.watch([config.path.watch.img], gulp.series('image:build'));
-		gulp.watch([config.path.watch.fonts], gulp.series('fonts:build'));
-		gulp.watch([config.path.watch.js], gulp.series('js:build'));
+		gulp.watch([config.path.watch.html], 		gulp.series(['html']));
+		gulp.watch(config.path.watch.files, 		gulp.series(['files']));	
+		gulp.watch([config.path.watch.style], 		gulp.series(['style']));
+		gulp.watch([config.path.watch.img], 		gulp.series(['images']));
+		gulp.watch([config.path.watch.fonts], 		gulp.series(['fonts']));
 	};
 };

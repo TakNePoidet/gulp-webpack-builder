@@ -1,70 +1,58 @@
 'use strict';
-var gulp		= require('gulp'),
-	watch		= require('gulp-watch'),
-	gutil 		= require("gulp-util"),
-	webpack		= require("webpack"),
-	plumber		= require('gulp-plumber'),
-	browserSync = require("browser-sync"),
-	reload		= browserSync.reload;
 
-const config 	= require('./config');
+global.$ = {
+    task: [
+		{name : 'html', 		path : './tasks/assets'},
+		{name : 'files', 		path : './tasks/files'},
+		{name : 'style:scss', 	path : './tasks/style_scss'},
+		{name : 'style:css', 	path : './tasks/style_css'},
+		{name : 'style:icon', 	path : './tasks/style_icon'},
+		{name : 'images', 		path : './tasks/images'},
+		{name : 'fonts', 		path : './tasks/fonts'},
+		{name : 'watch', 		path : './tasks/watch'},
+		{name : 'browser', 		path : './tasks/browser'},
+		{name : 'clean', 		path : './tasks/clean'},
+		{name : 'clearcache', 	path : './tasks/clearcache'},
+		{name : 'deploy', 		path : './tasks/deploy'},
+	],
+	config: require('./config'),
+    gulp: require('gulp'),
+    del: require('del'),
+    browserSync: require('browser-sync'),
+    gp: require('gulp-load-plugins')({
+		pattern: ['gulp-*',  'postcss-*', 'imagemin-*', 'vinyl-ftp'], // the glob(s) to search for
+		scope: ['dependencies', 'devDependencies', 'peerDependencies'], // which keys in the config to look within
+		replaceString: /^(gulp|postcss|imagemin)-/, // what to remove from the name of the module when adding it to the context
+		camelize: true, // if true, transforms hyphenated plugins names to camel case
+		lazy: true, // whether the plugins should be lazy loaded on demand
+		maintainScope: true // toggles loading all npm scopes like non-scoped packages
+	})
+};
 
 
-
-
-const RequireTask = (taskName, path, options = {}) => {
-	options.config 		= config;
-	options.taskName 	= taskName;
-
-	gulp.task(taskName, callback => {
-		let task = require(path).call(this, options);
-		return task(callback);
+$.task.forEach(task => {
+	$.gulp.task(task.name, callback => {
+		let task_ = require(task.path).call(this);
+		return task_(callback);
 	});
-}
+});
 
-const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
-
-RequireTask('html:build', 	'./tasks/assets');
-RequireTask('files:build', 	'./tasks/files');
-RequireTask('style:scss', 	'./tasks/style_scss');
-RequireTask('style:css', 	'./tasks/style_css');
-RequireTask('style:icon', 	'./tasks/style_icon');
-RequireTask('image:build', 	'./tasks/images');
-RequireTask('fonts:build', 	'./tasks/fonts');
-RequireTask('clean', 		'./tasks/clean');
-RequireTask('clearcache', 	'./tasks/clearcache');
-RequireTask('browser', 		'./tasks/browser');
-RequireTask('deploy', 		'./tasks/deploy');
-
-
-
-
-
-gulp.task('style:build', gulp.parallel(
+$.gulp.task('style', $.gulp.parallel(
 	'style:scss',
 	'style:icon',
 	'style:css'
 ));
-gulp.task('dist', gulp.parallel(
-	'html:build',
-	'files:build',
-	'style:build',
-	'image:build',
-	'fonts:build',
+
+$.gulp.task('dist', $.gulp.parallel(
+	'html',
+	'files',
+	'style',
+	'images',
+	'fonts',
 ));
-
-
-
-gulp.task('build', gulp.series(
+$.gulp.task('build', $.gulp.series(
 	'clearcache', 'clean',
-	gulp.parallel('dist')
+	$.gulp.parallel('dist')
 ));
-gulp.task('watch', () => {
-	watch([config.path.watch.html], 		gulp.series(['html:build']));
-	watch(config.path.watch.files, 			gulp.series(['files:build']));	
-	watch([config.path.watch.style], 		gulp.series(['style:build']));
-	watch([config.path.watch.img], 			gulp.series(['image:build']));
-	watch([config.path.watch.fonts], 		gulp.series(['fonts:build']));
-});
 
-gulp.task('default', gulp.series('dist', gulp.parallel('browser', 'watch')));
+$.gulp.task('default', $.gulp.series('dist', $.gulp.parallel('browser', 'watch')));

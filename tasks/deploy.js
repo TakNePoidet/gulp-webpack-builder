@@ -1,19 +1,15 @@
 'use strict';
 
+const 	{config, gulp, gp} = $;
 
-const 	gulp		= require('gulp'),
-		ftp			= require('vinyl-ftp'),
-		gutil		= require('gulp-util');
-
-module.exports = (options) => {
-	let config = options.config;
+module.exports = () => {
 	return () => { 
-		var conn = ftp.create({
+		let conn = gp.vinylFtp.create({
 			host:      config.ftp.host,
 			user:      config.ftp.user,
 			password:  config.ftp.password,
 			parallel:  10,
-			log: gutil.log
+			log:      gp.util.log
 		});
 
 		return gulp

@@ -1,28 +1,22 @@
 'use strict';
 
+const 	{config, gulp, browserSync, gp} = $;
 
-const 	gulp		= require('gulp'),
-		plumber		= require('gulp-plumber'),
-		imagemin	= require('gulp-imagemin'),
-		pngquant	= require('imagemin-pngquant'),
-		cache		= require('gulp-cache'),
-		browserSync = require("browser-sync"),
-		reload		= browserSync.reload;
-
-module.exports = (options) => {
-	let config = options.config;
+module.exports = () => {
 	return () => { 
 		return gulp
 			.src(config.path.src.style + "/images/**.*") //Выберем наши картинки
-			.pipe(cache(imagemin({ //Сожмем их
+			.pipe(gp.cache(gp.imagemin({ //Сожмем их
 				progressive: true,
 				svgoPlugins: [
 					{removeViewBox: false}
 				],
-				use: [pngquant()],
+				use: [gp.pngquant()],
 				interlaced: true
 			})))
 			.pipe(gulp.dest(config.path.dist.style + "/images/"))
-			.pipe(reload({stream: true}));
+			.pipe(browserSync.reload({
+                stream: true
+            }));
 	};
 };

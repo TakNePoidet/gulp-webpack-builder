@@ -1,11 +1,9 @@
 'use strict';
 
+const 	{config} = $;
 
-const 	del = require('del');
-
-module.exports = (options) => {
-	let config = options.config;
+module.exports = () => {
 	return () => { 
-		return del(config.path.dist.main);
+		return $.del(config.path.dist.main);
 	};
 };

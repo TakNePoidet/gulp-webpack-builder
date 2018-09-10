@@ -1,14 +1,8 @@
 'use strict';
 
+const 	{config, browserSync} = $;
 
-const 	gulp  		= require('gulp'),
-		plumber		= require('gulp-plumber'),
-		browserSync = require("browser-sync"),
-		reload		= browserSync.reload;
-
-
-module.exports = (options) => {
-	let config = options.config;
+module.exports = () => {
 	return () => { 
 		browserSync(config.browserSync); 
 	};
