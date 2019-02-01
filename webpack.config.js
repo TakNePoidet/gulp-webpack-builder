@@ -77,7 +77,7 @@ const webpack_config = {
 	],
 	resolve : {
 		alias: {
-			vue: 'vue/dist/vue.js',
+			vue: 'vue/dist/vue.esm.js',
 			Utility	: path.resolve(__dirname, `${config.path.src.js}/utils/`),
 		},
 	}   

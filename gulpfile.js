@@ -54,5 +54,11 @@ $.gulp.task('build', $.gulp.series(
 	'clearcache', 'clean',
 	$.gulp.parallel('dist')
 ));
+$.gulp.task('browser', $.gulp.series(
+	'browser'
+));
+
+
+
 
 $.gulp.task('default', $.gulp.series('dist', $.gulp.parallel('browser', 'watch')));

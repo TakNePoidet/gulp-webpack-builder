@@ -4,7 +4,7 @@ const 	{config, gulp, browserSync, gp} = $,
 		isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
 module.exports = () => {
-	return () => { 
+	return () => {
 		return gulp
 			.src(config.path.src.img) //Выберем наши картинки
 			.pipe(gp.if(isDevelopment,gp.cache(gp.imagemin({ //Сожмем их
