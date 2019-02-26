@@ -1,52 +1,44 @@
+const config = require('./config'),
+	path = require('path'),
+	webpack = require('webpack'),
+	UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+	{ VueLoaderPlugin } = require('vue-loader')
 
-const 	config  			= require('./config'), 
-		path 				= require('path'),
-		webpack 			= require('webpack'),
-		UglifyJsPlugin 		= require('uglifyjs-webpack-plugin'),
-		{ VueLoaderPlugin } = require('vue-loader');
-
-
-
-const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
+const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development'
 const webpack_config = {
 	entry: {
-		bundle : `./${config.path.src.js}/index.js`,
+		bundle: `./${config.path.src.js}/index.js`
 	},
 	output: {
 		path: path.join(__dirname, config.path.dist.main),
-		filename: `./assets/js/bundle.js`,
+		filename: `./assets/js/bundle.js`
 	},
 	mode: isDevelopment ? 'development' : 'production',
 	module: {
 		rules: [
 			{
 				test: /\.vue$/,
-				loader: 'vue-loader',
-			},{
+				loader: 'vue-loader'
+			},
+			{
 				test: /.js?$/,
 				use: {
-					loader: 'babel-loader',
+					loader: 'babel-loader'
 				},
 				exclude: /node_modules/
-			},{
+			},
+			{
 				test: /\.css$/,
-				use: [
-				  'vue-style-loader',
-				  'css-loader',
-				  'postcss-loader',
-				]
-			},{
+				use: ['vue-style-loader', 'css-loader', 'postcss-loader']
+			},
+			{
 				test: /\.scss$/,
-				use: [
-					'vue-style-loader',
-					'css-loader',
-					'postcss-loader',
-					'sass-loader',
-				]
-			},{
+				use: ['vue-style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+			},
+			{
 				test: /\.svg$/,
-				use : {
-					loader : 'svg-url-loader'
+				use: {
+					loader: 'svg-url-loader'
 				}
 			}
 		]
@@ -56,44 +48,43 @@ const webpack_config = {
 		noInfo: false,
 		contentBase: './dist',
 		port: 8081,
-		open: false,
+		open: false
 		// proxy: {
-		// 	'*': { 
-		// 		target: 'host', 
+		// 	'*': {
+		// 		target: 'host',
 		// 		secure: false,
 		// 		changeOrigin: true,
 		// 	}
 		// },
 	},
 	watch: isDevelopment,
-	
-   	plugins: [
+
+	plugins: [
 		// new webpack.ProvidePlugin({
-        //     $				: "jquery",
-        //     jQuery			: "jquery",
-        //     "window.jQuery"	: "jquery"
+		//     $				: "jquery",
+		//     jQuery			: "jquery",
+		//     "window.jQuery"	: "jquery"
 		// }),
-		new VueLoaderPlugin(),
+		new VueLoaderPlugin()
 	],
-	resolve : {
+	resolve: {
 		alias: {
 			vue: 'vue/dist/vue.esm.js',
-			Utility	: path.resolve(__dirname, `${config.path.src.js}/utils/`),
-		},
-	}   
-
-};
-
-
+			Utility: path.resolve(__dirname, `${config.path.src.js}/utils/`)
+		}
+	}
+}
 
 if (!isDevelopment) {
-	webpack_config.plugins.push(new UglifyJsPlugin({
-		sourceMap: false,
-		uglifyOptions: {
-			compress: true
-		}
-	}));
+	webpack_config.plugins.push(
+		new UglifyJsPlugin({
+			sourceMap: false,
+			uglifyOptions: {
+				compress: true
+			}
+		})
+	)
 }
-  
-if (isDevelopment) webpack_config.devtool = 'source-map';
-module.exports = webpack_config;
+
+if (isDevelopment) webpack_config.devtool = 'source-map'
+module.exports = webpack_config

@@ -1,9 +1,8 @@
-@import 'scss/_bootstrap.scss';
+@import "scss/bootstrap";
 @import 'scss/_function.scss';
 @import 'scss/_fonts.scss';
 
-$slick-font-path: "./../fonts/slick/";
-$slick-loader-path: "images/";
-
-@import "scss/lib/slick.scss";
-@import "scss/lib/slick-theme.scss";
+// $slick-font-path: "./../fonts/slick/";
+// $slick-loader-path: "images/";
+// @import "slick-carousel/slick/slick.scss";
+// @import "slick-carousel/slick/slick-theme.scss";

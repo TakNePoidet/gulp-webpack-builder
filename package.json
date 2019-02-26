@@ -5,6 +5,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"bootstrap": "4.3.1",
 		"vue": "^2.5.17"
 	},
 	"devDependencies": {
@@ -29,9 +30,11 @@
 		"gulp": "^4.0.0",
 		"gulp-autoprefixer": "^5.0.0",
 		"gulp-cache": "^1.0.2",
+		"gulp-cheerio": "^0.6.3",
 		"gulp-clean": "^0.4.0",
 		"gulp-clean-css": "^3.10.0",
 		"gulp-file-include": "^2.0.1",
+		"gulp-filter": "^5.1.0",
 		"gulp-html-beautify": "^1.0.1",
 		"gulp-if": "^2.0.2",
 		"gulp-imagemin": "^4.1.0",
@@ -39,10 +42,13 @@
 		"gulp-notify": "^3.2.0",
 		"gulp-nunjucks-render": "^2.2.2",
 		"gulp-plumber": "^1.2.0",
+		"gulp-preprocess": "^3.0.2",
 		"gulp-rename": "^1.4.0",
 		"gulp-replace": "^1.0.0",
 		"gulp-sass": "^4.0.1",
 		"gulp-sourcemaps": "^2.6.4",
+		"gulp-svg-sprites": "^4.1.2",
+		"gulp-svgmin": "^2.1.0",
 		"gulp-util": "^3.0.8",
 		"gulp-watch": "^5.0.1",
 		"imagemin-pngquant": "^6.0.0",
@@ -64,10 +70,10 @@
 	"optionalDependencies": {},
 	"scripts": {
 		"dev": "gulp & webpack-dev-server --inline --hot",
-		"clean": "gulp build",
+		"clean": "gulp clean",
 		"build": "cross-env NODE_ENV=production gulp build && cross-env NODE_ENV=production webpack --progress --inline --config webpack.config.js",
 		"server": "cross-env NODE_ENV=production gulp browser",
-		"lint": "eslint --ext .js,.vue src",
+		"lint": "eslint --ext .js,.vue,.html src",
 		"lint:fix": "eslint --ext .js,.vue src --fix",
 		"deploy": "gulp deploy"
 	}

@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
-const 	{gp} = $;
+const { gp } = $
 
 module.exports = () => {
-	return () => { 
-		return gp.cache.clearAll();
-	};
-};
+	return () => {
+		return gp.cache.clearAll()
+	}
+}

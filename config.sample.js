@@ -5,7 +5,7 @@ const path = ''
 const config = {
 	path: {
 		src: {
-			html: 'src/html/**',
+			html: ['src/html/**/*.html'],
 			files: ['src/files/**/.*', 'src/files/**'],
 			template: 'src/template/**',
 			css: 'src/assets/css/lib/**/*.css',
@@ -25,14 +25,13 @@ const config = {
 			main: 'dist' + path + '/'
 		},
 		watch: {
-			html: 'src/html/**',
+			html: ['src/html/**', 'src/template/**'],
 			files: ['src/files/**/.*', 'src/files/**'],
 			img: 'src/images/**/**',
 			style: 'src/assets/css/**',
 			fonts: 'src/assets/fonts/**'
 		}
 	},
-
 	browserSync: {},
 	ftp: {
 		host: 'host',

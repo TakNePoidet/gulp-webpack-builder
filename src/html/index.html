@@ -5,19 +5,31 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=1200,user-scalable=yes">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<!-- @if NODE_ENV == 'DEVELOPMENT' -->
+		<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+		<!-- @endif -->
+		<!-- @if NODE_ENV == 'PRODUCTION' -->
 		<link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=@@version">
+		<!-- @endif -->
 	</head>
 	<body>
 		<main id="app">
 			<div class="container">
 				<div class="row">
-					<div class="col">
-						<hello-world></hello-world>
-					</div>
+					<div class="col"> <hello-world>
+
+					</hello-world>
+					<div>
 				</div>
 			</div>
 		</main>
 
+		<!-- @if NODE_ENV == 'DEVELOPMENT' -->
+		<script src="/assets/js/bundle.js"></script>
+		<!-- @endif -->
+		<!-- @if NODE_ENV == 'PRODUCTION' -->
 		<script src="/assets/js/bundle.js?v=@@version"></script>
+		<!-- @endif -->
 	</body>
 </html>

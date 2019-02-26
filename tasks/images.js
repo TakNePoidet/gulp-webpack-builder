@@ -1,21 +1,33 @@
-'use strict';
+'use strict'
 
-const 	{config, gulp, browserSync, gp} = $,
-		isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
+const { config, gulp, browserSync, gp } = $,
+	isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development'
 
 module.exports = () => {
 	return () => {
 		return gulp
 			.src(config.path.src.img) //Выберем наши картинки
-			.pipe(gp.if(isDevelopment,gp.cache(gp.imagemin({ //Сожмем их
-				progressive: true,
-				svgoPlugins: [{removeViewBox: false}],
-				use: [gp.pngquant()],
-				interlaced: true
-			}))))
+			.pipe(gp.plumber())
+			.pipe(gp.filter(['**', '!**/README.md'], { restore: true }))
+			.pipe(
+				gp.if(
+					isDevelopment,
+					gp.cache(
+						gp.imagemin({
+							//Сожмем их
+							progressive: true,
+							svgoPlugins: [{ removeViewBox: false }],
+							use: [gp.pngquant()],
+							interlaced: true
+						})
+					)
+				)
+			)
 			.pipe(gulp.dest(config.path.dist.img))
-			.pipe(browserSync.reload({
-                stream: true
-            }));
-	};
-};
+			.pipe(
+				browserSync.reload({
+					stream: true
+				})
+			)
+	}
+}

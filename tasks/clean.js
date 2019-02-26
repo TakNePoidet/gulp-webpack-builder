@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
-const 	{config} = $;
+const { config } = $
 
 module.exports = () => {
-	return () => { 
-		return $.del(config.path.dist.main);
-	};
-};
+	return () => {
+		return $.del(config.path.dist.main)
+	}
+}
