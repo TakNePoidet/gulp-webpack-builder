@@ -27,7 +27,7 @@ module.exports = () => {
 			)
 			.pipe(gp.if(!isDevelopment, gp.cleanCss()))
 			.pipe(gp.if(isDevelopment, gp.sourcemaps.write('./')))
-			.pipe(gulp.dest(config.path.dist.style))
+			.pipe(gulp.dest(config.path.dist.style + '/lib'))
 			.pipe(
 				browserSync.reload({
 					stream: true

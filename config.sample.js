@@ -7,7 +7,7 @@ const config = {
 		src: {
 			html: ['src/html/**/*.html'],
 			files: ['src/files/**/.*', 'src/files/**'],
-			template: 'src/template/**',
+			template: 'src/template',
 			css: 'src/assets/css/lib/**/*.css',
 			scss: 'src/assets/css/*.scss',
 			style: 'src/assets/css/',
