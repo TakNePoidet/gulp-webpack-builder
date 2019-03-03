@@ -8,6 +8,7 @@ global.$ = {
 		{ name: 'style:css', path: './tasks/style_css' },
 		{ name: 'style:icon', path: './tasks/style_icon' },
 		{ name: 'sprite', path: './tasks/sprites' },
+		{ name: 'scripts', path: './tasks/scripts' },
 		{ name: 'images', path: './tasks/images' },
 		{ name: 'fonts', path: './tasks/fonts' },
 		{ name: 'watch', path: './tasks/watch' },
@@ -39,7 +40,10 @@ $.task.forEach(task => {
 
 $.gulp.task('style', $.gulp.parallel('style:scss', 'style:icon', 'style:css'))
 
-$.gulp.task('dist', $.gulp.parallel('html', 'files', 'style', 'images', 'sprite', 'fonts'))
+$.gulp.task(
+	'dist',
+	$.gulp.parallel('html', 'files', 'style', 'scripts', 'images', 'sprite', 'fonts')
+)
 $.gulp.task('build', $.gulp.series('clearcache', 'clean', $.gulp.parallel('dist')))
 $.gulp.task('browser', $.gulp.series('browser'))
 $.gulp.task('clean', $.gulp.series('clearcache', 'clean'))

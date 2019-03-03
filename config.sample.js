@@ -3,6 +3,7 @@
 const path = ''
 
 const config = {
+	version: '0.0.0',
 	path: {
 		src: {
 			html: ['src/html/**/*.html'],
@@ -29,14 +30,15 @@ const config = {
 			files: ['src/files/**/.*', 'src/files/**'],
 			img: 'src/images/**/**',
 			style: 'src/assets/css/**',
-			fonts: 'src/assets/fonts/**'
+			fonts: 'src/assets/fonts/**',
+			scripts: 'src/assets/js/scripts/**'
 		}
 	},
 	browserSync: {},
 	ftp: {
-		host: 'host',
-		user: 'user',
-		password: 'password',
+		host: '<host>',
+		user: '<user>',
+		password: '<password>',
 		path: 'path',
 		globs: ['dist/**/.*', 'dist/**']
 	}

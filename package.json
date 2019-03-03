@@ -1,9 +1,28 @@
 {
-	"name": "",
-	"version": "0.0.0",
-	"description": "",
-	"author": "",
-	"license": "ISC",
+	"name": "gulp-webpack-builder",
+	"version": "1.0.0",
+	"description": "Gulp Webpack Builder - static site builder with a lot of cool features",
+	"engines": {
+		"node": ">=8.9.1",
+		"npm": ">=5.5.0"
+	},
+	"keywords": [
+		"gulp",
+		"webpack",
+		"browsersync",
+		"gulp-webpack",
+		"gulp-starter",
+		"gulp-builder",
+		"bootstrap",
+		"vue",
+		"ES6"
+	],
+	"author": "Yakin Nikita <yakin95@gmail.com> (https://taknepoidet.ru/)",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/TakNePoidet/gulp-webpack-builder.git"
+	},
 	"dependencies": {
 		"bootstrap": "4.3.1",
 		"vue": "^2.5.17"
@@ -25,10 +44,12 @@
 		"del": "^3.0.0",
 		"eslint": "^5.12.1",
 		"eslint-config-prettier": "^4.0.0",
+		"eslint-plugin-html": "^5.0.3",
 		"eslint-plugin-prettier": "^3.0.1",
 		"eslint-plugin-vue": "^5.1.0",
 		"gulp": "^4.0.0",
 		"gulp-autoprefixer": "^5.0.0",
+		"gulp-babel": "^8.0.0",
 		"gulp-cache": "^1.0.2",
 		"gulp-cheerio": "^0.6.3",
 		"gulp-clean": "^0.4.0",
@@ -69,7 +90,7 @@
 	},
 	"optionalDependencies": {},
 	"scripts": {
-		"dev": "gulp & webpack-dev-server --inline --hot",
+		"start": "gulp & webpack-dev-server --inline --hot",
 		"clean": "gulp clean",
 		"build": "cross-env NODE_ENV=production gulp build && cross-env NODE_ENV=production webpack --progress --inline --config webpack.config.js",
 		"server": "cross-env NODE_ENV=production gulp browser",

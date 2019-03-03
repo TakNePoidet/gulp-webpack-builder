@@ -15,7 +15,7 @@ export default {
 <style lang="scss" scoped>
 div {
 	text-align: center;
-	margin: 100px auto;
+	margin: 30px auto;
 	width: 500px;
 	font-size: 30px;
 	font-weight: bold;

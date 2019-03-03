@@ -6,3 +6,70 @@
 // $slick-loader-path: "images/";
 // @import "slick-carousel/slick/slick.scss";
 // @import "slick-carousel/slick/slick-theme.scss";
+
+a {
+	color: inherit;
+	&:hover {
+		color: inherit;
+		text-decoration: underline;
+	}
+}
+.home-page {
+	height: 100%;
+	img {
+		width: 100%;
+		pointer-events: none;
+	}
+
+	h1 {
+		text-align: center;
+		margin: 50px auto;
+		font-size: 5vw;
+		font-weight: bold;
+		color: #262E58;
+	}
+
+	.container-fluid {
+		background: #262E58;
+	}
+	.look-at-github {
+		font-size: 1vw;
+		color: #262E58;
+		padding: 30px 15px;
+		text-align: center;
+		margin: auto;
+	}
+
+	@media screen and (max-width: 700px){
+		h1 {
+			font-size: 38px;
+		}
+		.look-at-github {
+			font-size:18px;
+		}
+	}
+}
+
+
+.demo-page {
+	.demo {
+		div {
+			&[class*="col-"] {
+				padding: 10px 0px;
+
+				span {
+					display: block;
+					background: #f1f1f1;
+					text-align: center;
+					font-weight: bold;
+					padding: 25px 5px;
+
+				}
+			}
+		}
+		img {
+			width: 100%;
+			pointer-events: none;
+		}
+	}
+}

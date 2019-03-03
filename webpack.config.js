@@ -1,6 +1,5 @@
 const config = require('./config'),
 	path = require('path'),
-	webpack = require('webpack'),
 	UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
 	{ VueLoaderPlugin } = require('vue-loader')
 
@@ -70,7 +69,7 @@ const webpack_config = {
 	resolve: {
 		alias: {
 			vue: 'vue/dist/vue.esm.js',
-			Utility: path.resolve(__dirname, `${config.path.src.js}/utils/`)
+			utilities: path.resolve(__dirname, `${config.path.src.js}/utilities/`)
 		}
 	}
 }

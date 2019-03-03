@@ -2,9 +2,9 @@
 
 const { config, gulp, browserSync, gp } = $
 let isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development'
-function getPackageJsonVersion() {
-	let fs = require('fs')
-	return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version
+
+const version = () => {
+	return isDevelopment ? (new Date().getTime() / 1000).toString() : config.version
 }
 
 module.exports = () => {
@@ -12,7 +12,7 @@ module.exports = () => {
 		return gulp
 			.src(config.path.src.html)
 			.pipe(gp.plumber())
-			.pipe(gp.filter(['**', '!**/README.md'], { restore: true }))
+			.pipe(gp.filter(['**/.*', '**', '!**/README.md'], { restore: true }))
 			.pipe(
 				gp.preprocess({
 					context: { NODE_ENV: isDevelopment ? 'DEVELOPMENT' : 'PRODUCTION' }
@@ -44,7 +44,7 @@ module.exports = () => {
 					indent_char: '	'
 				})
 			)
-			.pipe(gp.replace(/\?v=@@version/gm, '?v=' + getPackageJsonVersion()))
+			.pipe(gp.replace(/\?v=@@version/gm, '?v=' + version()))
 			.pipe(gulp.dest(config.path.dist.html))
 			.on('end', browserSync.reload)
 	}

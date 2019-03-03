@@ -9,7 +9,7 @@ module.exports = () => {
 			gulp
 				.src(config.path.src.scss)
 				.pipe(gp.plumber())
-				.pipe(gp.filter(['**', '!**/README.md'], { restore: true }))
+				.pipe(gp.filter(['**/.*', '**', '!**/README.md'], { restore: true }))
 				.pipe(gp.if(isDevelopment, gp.sourcemaps.init()))
 				.pipe(
 					gp.sass({ outputStyle: 'expanded', includePaths: ['node_modules/'] }).on(

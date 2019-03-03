@@ -7,7 +7,7 @@ module.exports = () => {
 		return (
 			gulp
 				.src(config.path.src.img + '/**.svg') //Выберем наши картинки
-				.pipe(gp.filter(['**', '!**/README.md'], { restore: true }))
+				.pipe(gp.filter(['**/.*', '**', '!**/README.md'], { restore: true }))
 				.pipe(
 					gp.svgmin({
 						js2svg: {

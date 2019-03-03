@@ -8,10 +8,10 @@ module.exports = () => {
 		return gulp
 			.src(config.path.src.img) //Выберем наши картинки
 			.pipe(gp.plumber())
-			.pipe(gp.filter(['**', '!**/README.md'], { restore: true }))
+			.pipe(gp.filter(['**/.*', '**', '!**/README.md'], { restore: true }))
 			.pipe(
 				gp.if(
-					isDevelopment,
+					!isDevelopment,
 					gp.cache(
 						gp.imagemin({
 							//Сожмем их
