@@ -15,7 +15,8 @@ global.$ = {
 		{ name: 'browser', path: './tasks/browser' },
 		{ name: 'clean', path: './tasks/clean' },
 		{ name: 'clearcache', path: './tasks/clearcache' },
-		{ name: 'deploy', path: './tasks/deploy' }
+		{ name: 'deploy', path: './tasks/deploy' },
+		{ name: 'mail', path: './tasks/email' }
 	],
 	config: require('./config'),
 	gulp: require('gulp'),
@@ -44,8 +45,9 @@ $.gulp.task(
 	'dist',
 	$.gulp.parallel('html', 'files', 'style', 'scripts', 'images', 'sprite', 'fonts')
 )
+
+$.gulp.task('default', $.gulp.series('dist', $.gulp.parallel('browser', 'watch')))
 $.gulp.task('build', $.gulp.series('clearcache', 'clean', $.gulp.parallel('dist')))
 $.gulp.task('browser', $.gulp.series('browser'))
 $.gulp.task('clean', $.gulp.series('clearcache', 'clean'))
-
-$.gulp.task('default', $.gulp.series('dist', $.gulp.parallel('browser', 'watch')))
+$.gulp.task('mail', $.gulp.series('mail'))
