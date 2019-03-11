@@ -1,6 +1,7 @@
 # Gulp Webpack Builder
 **Gulp Webpack Builder** - A simple web-development toolkit using Gulp task runner and Webpack bundler. Ideal for building static **HTML templates**,  **Wordpress theme** development, **Laravel**  and front-end project.
 ![enter image description here](https://gulp-webpack-builder.project.taknepoidet.ru/images/cover.jpg)
+
 ## List of Content
 
 1.  [Features](#features)
