@@ -69,7 +69,9 @@ const webpack_config = {
 	resolve: {
 		alias: {
 			vue: 'vue/dist/vue.esm.js',
-			utilities: path.resolve(__dirname, `${config.path.src.js}/utilities/`)
+			utilities: path.resolve(__dirname, `${config.path.src.js}/utilities/`),
+			'~components': path.resolve(__dirname, `${config.path.src.js}/components/`),
+			'~pages': path.resolve(__dirname, `${config.path.src.js}/pages/`)
 		}
 	}
 }
