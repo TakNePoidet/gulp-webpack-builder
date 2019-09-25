@@ -10,7 +10,7 @@ const webpack_config = {
 	},
 	output: {
 		path: path.join(__dirname, config.path.dist.main),
-		filename: `./assets/js/bundle.js`
+		filename: `./assets/js/[name].js`
 	},
 	mode: isDevelopment ? 'development' : 'production',
 	module: {
@@ -72,6 +72,18 @@ const webpack_config = {
 			utilities: path.resolve(__dirname, `${config.path.src.js}/utilities/`),
 			'~components': path.resolve(__dirname, `${config.path.src.js}/components/`),
 			'~pages': path.resolve(__dirname, `${config.path.src.js}/pages/`)
+		}
+	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				vendor: {
+					name: 'vendors',
+					test: /node_modules/,
+					chunks: 'all',
+					enforce: true
+				}
+			}
 		}
 	}
 }

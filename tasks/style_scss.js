@@ -3,6 +3,10 @@
 const { config, gulp, browserSync, gp } = $,
 	isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development'
 
+const autoprefixer = require('autoprefixer'),
+	mqpacker = require('css-mqpacker'),
+	cssnano = require('cssnano')
+
 module.exports = () => {
 	return () => {
 		return (
@@ -21,21 +25,21 @@ module.exports = () => {
 					)
 				)
 				.pipe(
-					gp.autoprefixer({
-						browsers: [
-							'> 1%',
-							'last 2 versions',
-							'firefox >= 4',
-							'safari 7',
-							'safari 8',
-							'IE 8',
-							'IE 9',
-							'IE 10',
-							'IE 11'
-						]
-					})
+					gp.postcss([
+						autoprefixer(),
+						mqpacker(),
+						cssnano({
+							preset: [
+								'default',
+								{
+									discardComments: {
+										removeAll: true
+									}
+								}
+							]
+						})
+					])
 				)
-				.pipe(gp.if(!isDevelopment, gp.cleanCss()))
 				// .pipe(gp.rename({suffix: '.min'}))
 				.pipe(gp.if(isDevelopment, gp.sourcemaps.write('./')))
 				.pipe(gulp.dest(config.path.dist.style))

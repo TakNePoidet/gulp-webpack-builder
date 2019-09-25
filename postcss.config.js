@@ -1,4 +1,15 @@
-const autoprefixer = require('autoprefixer')
 module.exports = {
-	plugins: [autoprefixer(['last 15 versions'])]
-}
+	plugins: [
+	  require('autoprefixer'),
+	  require('css-mqpacker'),
+	  require('cssnano')({
+		preset: [
+		  'default', {
+			discardComments: {
+			  removeAll: true
+			}
+		  }
+		]
+	  })
+	]
+  }

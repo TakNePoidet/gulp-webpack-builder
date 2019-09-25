@@ -66,9 +66,11 @@
 		</main>
 
 		<!-- @if NODE_ENV == 'DEVELOPMENT' -->
+		<script src="/assets/js/vendors.js"></script>
 		<script src="/assets/js/bundle.js?v=@@version"></script>
 		<!-- @endif -->
 		<!-- @if NODE_ENV == 'PRODUCTION' -->
+		<script src="/assets/js/vendors.js"></script>
 		<script src="/assets/js/bundle.js?v=@@version"></script>
 		<!-- @endif -->
 	</body>
