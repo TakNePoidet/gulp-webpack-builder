@@ -37,7 +37,7 @@ const webpack_config = {
 			{
 				test: /\.svg$/,
 				use: {
-					loader: 'svg-url-loader'
+					loader: 'svg-inline-loade'
 				}
 			}
 		]
