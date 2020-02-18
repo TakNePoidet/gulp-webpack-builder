@@ -41,45 +41,69 @@
 	</head>
 	<body>
 		<main id="app">
-			<div class="home-page">
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<!-- <hello-world></hello-world> -->
-							<h1>Gulp Webpack Builder</h1>
-						</div>
-					</div>
-				</div>
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col">
-							<div class="container">
-								<div class="row">
-									<div class="col">
-										<img src="/images/cover.svg" />
-									</div>
+			<div class="container">
+				<div class="playerlist">
+					<div
+						class="audio-player"
+						data-audio-uuid="1072ba8a-cb3a-466e-aaeb-31c4288de947"
+						data-audio='["1072ba8a-cb3a-466e-aaeb-31c4288de947","ПопКорн - Целый лям.mp3","ПопКорн", "Целый лям", 289]'
+					>
+						<div
+							class="audio-player__play_btn"
+							onclick="new PrimaryAudioPlayer().toggleAudio(this,event)"
+						></div>
+						<div class="audio-player__inner">
+							<div class="audio-player__performer_title">
+								<div class="audio-player__performers">
+									ПопКорн
+								</div>
+								<div class="audio-player__title">
+									Целый лям
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
 
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<div class="look-at-github">
-								<a
-									target="_blank"
-									href="https://github.com/TakNePoidet/gulp-webpack-builder"
-									>Look at GitHub <i class="fab fa-github"></i
-								></a>
+						<div class="audio-player__place">
+							<div class="">
+								<div class="audio-player__progress">
+									<input
+										type="range"
+										min="0"
+										max="100"
+										step="0.01"
+										value="0"
+										autocomplete="off"
+										style="--value:43.02%;"
+										data-audio-control="progress"
+										oninput="return new PrimaryAudioPlayer().setCurrentTime(this,event); return false"
+									/><progress
+										class="audio-player____progress__buffer"
+										min="0"
+										max="100"
+										value="4.908096065004423"
+										role="progressbar"
+										data-audio-control="progress-buffer"
+										>% buffered</progress
+									>
+								</div>
+								<div class="audio-player__volume">
+									<input
+										type="range"
+										min="0"
+										max="1"
+										step="0.05"
+										value="1"
+										autocomplete="off"
+										style="--value:100%;"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</main>
-		
+
 		<!-- @if NODE_ENV == 'DEVELOPMENT' -->
 		<script src="/assets/js/vendors.js"></script>
 		<script src="/assets/js/bundle.js?v=@@version"></script>

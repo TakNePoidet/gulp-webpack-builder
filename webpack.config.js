@@ -20,10 +20,8 @@ const webpack_config = {
 				loader: 'vue-loader'
 			},
 			{
-				test: /.js?$/,
-				use: {
-					loader: 'babel-loader'
-				},
+				test: /\.(ts|js)x?$/,
+				use: ['babel-loader'],
 				exclude: /node_modules/
 			},
 			{
@@ -67,11 +65,16 @@ const webpack_config = {
 		new VueLoaderPlugin()
 	],
 	resolve: {
+		extensions: ['.js', '.ts', '.vue', '.jsx', '.tsx', '.scss'],
 		alias: {
 			vue: 'vue/dist/vue.esm.js',
-			utilities: path.resolve(__dirname, `${config.path.src.js}/utilities/`),
 			'~components': path.resolve(__dirname, `${config.path.src.js}/components/`),
-			'~pages': path.resolve(__dirname, `${config.path.src.js}/pages/`)
+			'~subSites': path.resolve(__dirname, `${config.path.src.js}/SubSites/`),
+			'~types': path.resolve(__dirname, `${config.path.src.js}/Types/`),
+			'~interface': path.resolve(__dirname, `${config.path.src.js}/Interface/*`),
+			'~libs': path.resolve(__dirname, `${config.path.src.js}/lib/`),
+			'~style': path.resolve(__dirname, `${config.path.src.style}/`),
+			'~': path.resolve(__dirname, `${config.path.src.js}/`)
 		}
 	},
 	optimization: {

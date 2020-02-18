@@ -1,6 +1,9 @@
-import "@babel/polyfill"
-import Vue from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
-Vue.component('HelloWorld', HelloWorld)
+import { AudioPlayer, PrimaryAudioPlayer } from './lib/Player'
 
-const app = new Vue({ el: '#app' })
+// const audio = document.createElement('audio')
+// audio.src = 'ПопКорн - Целый лям.mp3'
+// audio.controls = true
+// @ts-ignore
+window.Audio = new AudioPlayer()
+
+window.PrimaryAudioPlayer = PrimaryAudioPlayer
