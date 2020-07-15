@@ -1,9 +1,12 @@
-$enable-flex: true;
-$enable-grid-classes: true;
+
+$enable-flex:               true;
+$enable-grid-classes:       true;
 @import 'bootstrap/scss/_functions.scss';
 @import 'bootstrap/scss/_variables.scss';
 @import 'bootstrap/scss/_mixins.scss';
 @import 'bootstrap/scss/_reboot.scss';
-// @import 'bootstrap/scss/_grid.scss';
-// @import 'bootstrap/scss/_buttons.scss';
-// @import 'bootstrap/scss/utilities/_text.scss';
+@import 'bootstrap/scss/_grid.scss';
+@import 'bootstrap/scss/_buttons.scss';
+@import 'bootstrap/scss/utilities/_text.scss';
+
+
